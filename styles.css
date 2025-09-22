@@ -1,0 +1,44 @@
+:root{
+  --bg:#f7f9fc; --card:#ffffff; --muted:#6b7280; --accent:#2563eb; --success:#16a34a; --danger:#dc2626; --radius:12px;
+  --maxw:980px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#0f172a; margin:0; padding:24px; display:flex; align-items:flex-start; justify-content:center;}
+.container{max-width:var(--maxw); width:100%;}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+h1{margin:0;font-size:18px}
+.small{font-size:13px;color:var(--muted)}
+.select-lang{padding:6px 8px;border-radius:8px;border:1px solid #e6edf3;background:white}
+
+.card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 18px rgba(12,18,31,0.06);}
+
+.grid{display:grid;grid-template-columns:320px 1fr;gap:16px}
+@media (max-width:800px){ .grid{grid-template-columns:1fr} }
+
+.auth-area{display:flex;gap:8px;align-items:center}
+.btn{background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+.btn.danger{background:var(--danger)}
+.input, input[type=text], input[type=password], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6edf3;font-size:14px}
+
+.tasks-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;border:1px solid #eef3fb}
+.task .title{flex:1}
+.task.done .title{text-decoration:line-through;color:var(--muted)}
+.task-actions{display:flex;gap:6px}
+
+.empty{padding:28px;text-align:center;color:var(--muted)}
+
+footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+/* RTL helpers */
+[dir="rtl"]{direction:rtl}
+[dir="rtl"] .brand{flex-direction:row-reverse}
+[dir="rtl"] .grid{grid-template-columns:1fr 320px}
+
+/* tiny utilities */
+.row{display:flex;gap:8px;align-items:center}
+.link{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-size:14px}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register - Multilingual To-Do</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">ML</div>
+        <div>
+          <h1 data-i18n="appTitle"></h1>
+          <div class="small" data-i18n="appSub"></div>
+        </div>
+      </div>
+
+      <div class="auth-area">
+        <select id="lang" class="select-lang"></select>
+      </div>
+    </header>
+
+    <main>
+      <div class="card" style="max-width:480px;margin:0 auto">
+        <h2 data-i18n="registerTitle"></h2>
+
+        <form id="register-form">
+          <div style="margin-top:12px">
+            <input id="reg-username" class="input" placeholder="" data-i18n="username" />
+          </div>
+          <div style="margin-top:8px">
+            <input id="reg-password" type="password" class="input" placeholder="" data-i18n="password" />
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit" data-i18n="registerBtn"></button>
+            <button id="to-login" class="btn ghost" type="button" data-i18n="gotoLogin"></button>
+          </div>
+        </form>
+
+        <div style="margin-top:12px" class="small">
+          <a href="login.html" id="to-login-link" class="link" data-i18n="gotoLogin"></a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
