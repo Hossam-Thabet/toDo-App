@@ -1,7 +1,7 @@
 // app.js - shared logic for translations, auth, tasks, and language switching
 
-const APP_KEY = 'ml_todo_v5_all';
-const LANG_KEY = 'ml_todo_lang_v5';
+const APP_KEY = 'ml_todo_all';
+const LANG_KEY = 'ml_todo_lang';
 
 // ------- TRANSLATIONS -------
 const translations = {
@@ -80,7 +80,7 @@ function readState(){
     return JSON.parse(localStorage.getItem(APP_KEY)) || {users:{}, sessions:{}}
   }catch(e){
     return {users:{}, sessions:{}}
-    }
+  }
 }
 function writeState(s){
   localStorage.setItem(APP_KEY, JSON.stringify(s));
@@ -145,29 +145,33 @@ function addTask(title){
   return task;
 }
 
-function editTask(id, title){
+function editTask(id, title) {
   const tasks = getTasks();
   const tsk = tasks.find(x=>x.id==id);
   if(tsk){ tsk.title = title; saveTasks(tasks); }
 }
 
-function deleteTask(id){
+function deleteTask(id) {
   let tasks = getTasks();
   tasks = tasks.filter(x=>x.id != id);
   saveTasks(tasks);
 }
 
-function toggleDone(id){
+function toggleDone(id) {
   const tasks = getTasks();
   const tsk = tasks.find(x=>x.id==id);
   if(tsk){ tsk.done = !tsk.done; saveTasks(tasks); }
 }
 
 // ------- LANGUAGE UI & APPLY -------
-function populateLangSelect(selectEl){
+function populateLangSelect(selectEl) {
   selectEl.innerHTML = '';
-  const optEn = document.createElement('option'); optEn.value = 'en'; optEn.textContent = 'English';
-  const optAr = document.createElement('option'); optAr.value = 'ar'; optAr.textContent = 'العربية';
+  const optEn = document.createElement('option');
+  optEn.value = 'en';
+  optEn.textContent = 'English';
+  const optAr = document.createElement('option');
+  optAr.value = 'ar';
+  optAr.textContent = 'العربية';
   selectEl.appendChild(optEn);
   selectEl.appendChild(optAr);
   selectEl.value = localStorage.getItem(LANG_KEY) || 'en';
@@ -239,13 +243,13 @@ onReady(()=>{
 
   if(path === '' || path === 'index.html'){
     // protect: must be logged in
-    if(!currentUser()){ window.location.href = 'login.html'; return; }
+    if(!currentUser()) { window.location.href = 'login.html'; return; }
     initHomePage();
   } else if(path === 'login.html'){
-    if(currentUser()){ window.location.href = 'index.html'; return; }
+    if(currentUser()) { window.location.href = 'index.html'; return; }
     initLoginPage();
   } else if(path === 'register.html'){
-    if(currentUser()){ window.location.href = 'index.html'; return; }
+    if(currentUser()) { window.location.href = 'index.html'; return; }
     initRegisterPage();
   }
 
@@ -254,7 +258,7 @@ onReady(()=>{
 });
 
 // ------- HOME (index.html) -------
-function initHomePage(){
+function initHomePage() {
   // elements expected on index.html
   const addInput = el('#new-task');
   const addBtn = el('#add-btn');
@@ -263,11 +267,11 @@ function initHomePage(){
   const userNode = el('#current-user');
   const statsNode = el('#stats');
 
-  function render(){
+  function render() {
     applyTranslations();
     const tasks = getTasks();
     list.innerHTML = '';
-    if(tasks.length === 0){
+    if(tasks.length === 0) {
       empty.style.display = 'block';
     } else {
       empty.style.display = 'none';
@@ -336,7 +340,7 @@ function initHomePage(){
 }
 
 // ------- LOGIN PAGE -------
-function initLoginPage(){
+function initLoginPage() {
   const formLogin = el('#login-form');
   const linkRegister = el('#to-register');
 
@@ -357,7 +361,7 @@ function initLoginPage(){
 }
 
 // ------- REGISTER PAGE -------
-function initRegisterPage(){
+function initRegisterPage() {
   const form = el('#register-form');
   const toLogin = el('#to-login');
 
@@ -382,5 +386,6 @@ function initRegisterPage(){
 }
 
 // ------- util escape html -------
-function escapeHtml(s){
-  return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+function escapeHtml(s) {
+  return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
