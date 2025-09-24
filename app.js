@@ -10,6 +10,8 @@ const translations = {
     appSub: 'Simple local-only multilingual tasks',
     loginTitle: 'Login',
     registerTitle: 'Register',
+    firstName: 'First Name',
+    lastName: 'Last Name',
     username: 'Username',
     password: 'Password',
     loginBtn: 'Login',
@@ -40,6 +42,8 @@ const translations = {
     appSub: 'تطبيق محلي بسيط يدعم العربية والإنجليزية',
     loginTitle: 'تسجيل الدخول',
     registerTitle: 'تسجيل',
+    firstName: 'الاسم الأول',
+    lastName: 'اسم العائلة',
     username: 'اسم المستخدم',
     password: 'كلمة المرور',
     loginBtn: 'دخول',
@@ -87,9 +91,9 @@ function writeState(s){
 }
 
 // ------- AUTH -------
-function registerUser(username, password){
+function registerUser(username, password, firstName, lastName){
   const s = readState();
-  if(!username || !password) return {ok:false,msg:'fill'};
+  if(!username || !password || !firstName || !lastName) return {ok:false,msg:'fill'};
   if(s.users[username]) return {ok:false,msg:'exists'};
   s.users[username] = {password, tasks:[], nextId:1};
   s.sessions.currentUser = username;
@@ -367,10 +371,12 @@ function initRegisterPage() {
 
   form.addEventListener('submit', ev => {
     ev.preventDefault();
+    const firstName = el('#reg-firstname').value.trim();
+    const lastName = el('#reg-lastname').value.trim();
     const u = el('#reg-username').value.trim();
     const p = el('#reg-password').value;
-    if(!u || !p){ alert(t('fillAll')); return; }
-    const r = registerUser(u,p);
+    if(!u || !p || !firstName || !lastName){ alert(t('fillAll')); return; }
+    const r = registerUser(u,p,firstName,lastName);
     if(!r.ok){
       if(r.msg === 'exists') alert(t('userExists')); else alert('Error');
       return;

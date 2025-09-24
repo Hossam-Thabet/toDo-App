@@ -10,7 +10,7 @@
   <div class="container">
     <header class="header">
       <div class="brand">
-        <div class="logo">ML</div>
+        <div class="logo">ToDo</div>
         <div>
           <h1 data-i18n="appTitle"></h1>
           <div class="small" data-i18n="appSub"></div>
@@ -28,12 +28,17 @@
 
         <form id="register-form">
           <div style="margin-top:12px">
+            <input id="reg-firstname" class="input" placeholder="" data-i18n="firstName" />
+          </div>
+          <div style="margin-top:8px">
+            <input id="reg-lastname" class="input" placeholder="" data-i18n="lastName" />
+          </div>
+          <div style="margin-top:8px">
             <input id="reg-username" class="input" placeholder="" data-i18n="username" />
           </div>
           <div style="margin-top:8px">
             <input id="reg-password" type="password" class="input" placeholder="" data-i18n="password" />
           </div>
-
           <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
             <button class="btn" type="submit" data-i18n="registerBtn"></button>
             <button id="to-login" class="btn ghost" type="button" data-i18n="gotoLogin"></button>
