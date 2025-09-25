@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Home - Multilingual To-Do</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
   <div class="container">
@@ -19,7 +19,7 @@
 
       <div class="auth-area">
         <select id="lang" class="select-lang" title="Language"></select>
-        <div class="small" data-i18n></div>
+        <!-- <div class="small" data-i18n></div> -->
         <div class="small">
           <span id="current-user">—</span>
         </div>
@@ -27,13 +27,13 @@
       </div>
     </header>
 
-    <div class="grid">
-      <aside>
+    <div class="parent">
+      <section>
         <div class="card">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div>
-              <strong data-i18n="myTasks"></strong>
-              <div class="small" id="stats"></div>
+              <strong data-i18n="welcomeMsg"></strong>
+              <div id="stats" class="small"></div>
             </div>
             <div class="small">
               <span id="current-user-small">—</span>
@@ -48,10 +48,10 @@
             <div class="small" style="margin-top:8px" data-i18n="appSub"></div>
           </div>
         </div>
-      </aside>
+      </section>
 
-      <main>
-        <div class="card" style=" width: 100%">
+      <section>
+        <div class="card">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
               <strong data-i18n="myTasks"></strong>
@@ -62,14 +62,14 @@
           <div class="tasks-list" id="tasks-list"></div>
           <div class="empty" id="empty-message" data-i18n="noTasks"></div>
         </div>
-      </main>
+      </section>
     </div>
 
     <footer>
-      <div class="small">Hossam Hussein Thabet - All Rights Reserved</div>
+      <div>Hossam Hussein Thabet - All Rights Reserved</div>
     </footer>
   </div>
 
-  <script src="./app.js"></script>
+  <script src="./scripts/app.js"></script>
 </body>
 </html>

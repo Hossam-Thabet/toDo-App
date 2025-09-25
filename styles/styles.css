@@ -65,7 +65,7 @@ h1 {
 }
 
 .small {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--muted);
 }
 
@@ -83,17 +83,15 @@ h1 {
   box-shadow: 0 6px 18px rgba(12,18,31,0.06);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
+.parent {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
   gap: 16px;
+  margin: 0 auto;
 }
 
-@media (max-width:800px){
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 .auth-area {
   display: flex;
@@ -162,7 +160,7 @@ h1 {
 footer {
   margin-block-start: 18px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
   padding: 16px;
 }
@@ -176,9 +174,7 @@ footer {
   flex-direction: row-reverse;
 }
 
-[dir="rtl"] .grid {
-  grid-template-columns: 1fr 320px;
-}
+
 
 /* tiny utilities */
 .row {
