@@ -1,4 +1,3 @@
-// app.js - shared logic for translations, auth, tasks, and language switching
 
 const appKey = "ml_todo_all";
 const langKey = "ml_todo_lang";
@@ -6,7 +5,7 @@ const langKey = "ml_todo_lang";
 // ------- TRANSLATIONS -------
 const translations = {
   en: {
-    appTitle: "Multilingual To-Do",
+    appTitle: "Multilingual To-Do App",
     appSub: "Simple local-only multilingual tasks",
     loginTitle: "Login",
     registerTitle: "Register",
@@ -105,6 +104,7 @@ function registerUser(username, password, firstName, lastName) {
   writeState(s);
   return { ok: true };
 }
+
 function loginUser(username, password) {
   const s = readState();
   const u = s.users[username];
@@ -113,6 +113,7 @@ function loginUser(username, password) {
   writeState(s);
   return { ok: true };
 }
+
 function logoutUser() {
   const s = readState();
   delete s.sessions.currentUser;
@@ -236,6 +237,7 @@ function applyTranslations() {
 function el(q, from = document) {
   return from.querySelector(q);
 }
+
 function onReady(fn) {
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", fn);
@@ -283,8 +285,6 @@ onReady(() => {
     initRegisterPage();
   }
 
-  // reapply translations after dynamic changes
-  // called as needed inside page inits
 });
 
 // ------- HOME (index.html) -------
@@ -306,6 +306,7 @@ function initHomePage() {
     } else {
       empty.style.display = "none";
     }
+
     tasks.forEach((task) => {
       const item = document.createElement("div");
       item.className = "task" + (task.done ? " done" : "");
@@ -334,6 +335,7 @@ function initHomePage() {
         render();
       });
     });
+
     list.querySelectorAll(".edit").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = Number(e.currentTarget.dataset.id);
@@ -346,6 +348,7 @@ function initHomePage() {
         }
       });
     });
+
     list.querySelectorAll(".delete").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = Number(e.currentTarget.dataset.id);
@@ -374,6 +377,7 @@ function initHomePage() {
     addInput.value = "";
     render();
   });
+  
   addInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") addBtn.click();
   });
@@ -384,6 +388,7 @@ function initHomePage() {
 
 // ------- LOGIN PAGE -------
 function initLoginPage() {
+  clearAuthInputs("#login-form");
   const formLogin = el("#login-form");
   const linkRegister = el("#to-register");
 
@@ -411,6 +416,7 @@ function initLoginPage() {
 
 // ------- REGISTER PAGE -------
 function initRegisterPage() {
+  clearAuthInputs("#register-form");
   const form = el("#register-form");
   const toLogin = el("#to-login");
 
@@ -456,4 +462,14 @@ function escapeHtml(s) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
+}
+
+// ------- code to clear all input fields in login and register forms -------
+function clearAuthInputs(formSelector) {
+  const form = document.querySelector(formSelector);
+  if (form) {
+    form.querySelectorAll("input").forEach((input) => {
+      input.value = "";
+    });
+  }
 }
