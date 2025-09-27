@@ -119,7 +119,7 @@ function logoutUser() {
   delete s.sessions.currentUser;
   writeState(s);
   // go to login
-  window.location.href = "login.html";
+  window.location.href = "./login.html";
 }
 
 function currentUser() {
@@ -267,19 +267,19 @@ onReady(() => {
   if (path === "" || path === "index.html") {
     // protect: must be logged in
     if (!currentUser()) {
-      window.location.href = "login.html";
+      window.location.href = "./login.html";
       return;
     }
     initHomePage();
   } else if (path === "login.html") {
     if (currentUser()) {
-      window.location.href = "index.html";
+      window.location.href = "./index.html";
       return;
     }
     initLoginPage();
   } else if (path === "register.html") {
     if (currentUser()) {
-      window.location.href = "index.html";
+      window.location.href = "./index.html";
       return;
     }
     initRegisterPage();
@@ -405,12 +405,12 @@ function initLoginPage() {
       alert(t("invalidCreds"));
       return;
     }
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
   });
 
   linkRegister.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "register.html";
+    window.location.href = "./register.html";
   });
 }
 
@@ -437,12 +437,12 @@ function initRegisterPage() {
       return;
     }
     // on success redirect to home
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
   });
 
   toLogin.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "login.html";
+    window.location.href = "./login.html";
   });
 }
 
